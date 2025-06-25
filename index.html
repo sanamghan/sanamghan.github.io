@@ -853,17 +853,23 @@
                 font-size: 3.5rem;
             }
 
-            /* Hero adjustments for mobile - NO IMAGE */
+            /* Hero adjustments for mobile - SHOW IMAGE WITH PROPER TRANSPARENCY */
             .hero-text-container {
                 margin-top: 30vh !important;
             }
 
-            .hero-image {
-                display: none; /* Remove image completely on mobile */
+            .hero-image, .hero-overlay {
+                width: 100%;
+                clip-path: none;
+                opacity: 0.3; /* 30% opacity - visible but subtle */
             }
 
             .hero-overlay {
-                display: none; /* Remove overlay too */
+                opacity: 0.1; /* Very light yellow overlay */
+            }
+
+            .hero-content {
+                text-align: center;
             }
 
             /* About cards - 2x3 grid on mobile */
