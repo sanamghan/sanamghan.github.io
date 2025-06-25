@@ -853,18 +853,17 @@
                 font-size: 3.5rem;
             }
 
-            /* Hero adjustments for mobile */
+            /* Hero adjustments for mobile - NO IMAGE */
             .hero-text-container {
-                margin-top: 40vh !important;
+                margin-top: 30vh !important;
             }
 
             .hero-image {
-                opacity: 0.05; /* VERY faint - barely visible */
-                filter: blur(3px); /* Add blur to make it even less prominent */
+                display: none; /* Remove image completely on mobile */
             }
 
             .hero-overlay {
-                background-color: rgba(255, 251, 240, 0.85); /* Add semi-opaque ivory overlay */
+                display: none; /* Remove overlay too */
             }
 
             /* About cards - 2x3 grid on mobile */
