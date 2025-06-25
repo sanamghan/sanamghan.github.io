@@ -853,19 +853,22 @@
                 font-size: 3.5rem;
             }
 
-            /* Hero adjustments for mobile - SHOW IMAGE WITH PROPER TRANSPARENCY */
+            /* Hero adjustments for mobile - SHOW IMAGE CLEARLY */
             .hero-text-container {
                 margin-top: 30vh !important;
             }
 
-            .hero-image, .hero-overlay {
+            .hero-image {
                 width: 100%;
                 clip-path: none;
-                opacity: 0.3; /* 30% opacity - visible but subtle */
+                opacity: 0.7; /* 70% opacity - much more visible */
             }
 
             .hero-overlay {
-                opacity: 0.1; /* Very light yellow overlay */
+                width: 100%;
+                clip-path: none;
+                opacity: 0.3; /* Light yellow overlay */
+                background-color: rgba(255, 219, 88, 0.3);
             }
 
             .hero-content {
