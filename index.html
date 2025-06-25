@@ -400,11 +400,11 @@
             color: var(--pink);
         }
 
-        /* Experience Section - NEW STYLING */
+        /* Experience Section - REDUCED BOTTOM PADDING */
         .experience {
             background-color: var(--ivory);
             position: relative;
-            padding: 4rem 0;
+            padding: 4rem 0 3rem 0;
         }
 
         .experience h2 {
@@ -823,6 +823,131 @@
             transition: transform 0.3s ease;
         }
 
+        /* Contact Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: var(--ivory);
+            margin: 5% auto;
+            padding: 2.5rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            animation: slideUp 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .close {
+            color: var(--light-text);
+            float: right;
+            font-size: 2rem;
+            font-weight: 300;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            line-height: 1;
+            margin-top: -10px;
+        }
+
+        .close:hover {
+            color: var(--bright-pink);
+            transform: rotate(90deg);
+        }
+
+        .modal h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--dark-text) 30%, var(--bright-pink) 70%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-text);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            background-color: white;
+            font-family: var(--sans-font);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--bright-pink);
+            box-shadow: 0 4px 10px rgba(255, 61, 127, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            display: inline-block;
+            padding: 0.9rem 2.5rem;
+            background: linear-gradient(45deg, var(--bright-pink), var(--purple));
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 61, 127, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
         /* Responsive styles */
         @media (max-width: 992px) {
             .hero-title, .hero-subtitle {
@@ -959,6 +1084,11 @@
             .footer {
                 padding: 2.5rem 0 1.5rem 0;
             }
+
+            .copyright {
+                margin-top: 1.5rem;
+                padding-top: 1rem;
+            }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
@@ -970,7 +1100,7 @@
             <div class="hero-text-container" style="margin-top: 30vh;">
                 <h1 class="hero-title">Sanam Ghaneeian</h1>
                 <p class="hero-subtitle">Agency founder. Growth marketer. AI tinkerer.</p>
-                <a href="#" class="cta-button">Contact Me</a>
+                <a href="#" class="cta-button" onclick="openModal(event)">Contact Me</a>
             </div>
         </div>
         <div class="hero-image" style="background-image: url('https://i.imgur.com/tiVV9q6.jpeg');"></div>
@@ -1116,7 +1246,54 @@
         </div>
     </footer>
 
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>Get In Touch</h3>
+            <form id="contactForm" action="https://formsubmit.co/YOUR_EMAIL@EXAMPLE.COM" method="POST">
+                <div class="form-group">
+                    <label for="firstName">First Name *</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name *</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="additionalInfo">Additional Information</label>
+                    <textarea id="additionalInfo" name="additionalInfo" placeholder="Tell me more about your project or how I can help..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
     <script>
+        // Modal functions
+        function openModal(event) {
+            event.preventDefault();
+            document.getElementById('contactModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
         // Simple animation for the cards
         document.addEventListener('DOMContentLoaded', function() {
             const aboutCards = document.querySelectorAll('.about-card');
