@@ -932,10 +932,456 @@
             box-shadow: 0 10px 25px rgba(255, 61, 127, 0.3);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        @keyframes slideUp {
+            from { 
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
-        @keyframes slideUp {
-            from {
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .hero-title, .hero-subtitle {
+                max-width: 100%;
+            }
+
+            .hero-image, .hero-overlay {
+                width: 100%;
+                clip-path: none;
+                opacity: 0.2;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            /* Hero adjustments for mobile - SHOW IMAGE CLEARLY */
+            .hero-text-container {
+                margin-top: 30vh !important;
+            }
+
+            .hero-image {
+                width: 100%;
+                clip-path: none;
+                opacity: 0.7; /* 70% opacity - much more visible */
+            }
+
+            .hero-overlay {
+                width: 100%;
+                clip-path: none;
+                opacity: 0.3; /* Light yellow overlay */
+                background-color: rgba(255, 219, 88, 0.3);
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            /* About cards - 2x3 grid on mobile */
+            .about-cards {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .about-card {
+                padding: 1.2rem;
+                min-height: 100px;
+            }
+
+            .about-card .emoji {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .about-card h3 {
+                font-size: 1rem;
+            }
+
+            /* Currently items - keep original single column */
+            .currently-items {
+                grid-template-columns: 1fr;
+            }
+
+            /* Experience section - reduce bottom padding on mobile */
+            .experience {
+                padding: 3rem 0 2rem 0;
+            }
+
+            /* Footer - minimal padding on mobile */
+            .footer {
+                padding: 2rem 0 1.5rem 0;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .footer-section {
+                margin-bottom: 0;
+            }
+
+            .footer-section h3 {
+                margin-bottom: 1rem;
+            }
+
+            .features-list {
+                margin-bottom: 0;
+            }
+
+            .social-icons {
+                margin-top: 1rem;
+                margin-bottom: 0;
+            }
+
+            .copyright {
+                margin-top: 1.5rem;
+                padding-top: 1rem;
+            }
+
+            .experience-timeline {
+                padding-left: 1rem;
+            }
+
+            .experience-item {
+                padding-left: 1.5rem;
+            }
+
+            .experience-item::before {
+                left: -1.5rem;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .about-card {
+                padding: 1rem;
+            }
+
+            /* Even less footer padding on very small screens */
+            .footer {
+                padding: 2.5rem 0 1.5rem 0;
+            }
+
+            .copyright {
+                margin-top: 1.5rem;
+                padding-top: 1rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TG5MLCW5ZK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TG5MLCW5ZK');
+    </script>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text-container" style="margin-top: 30vh;">
+                <h1 class="hero-title">Sanam Ghaneeian</h1>
+                <p class="hero-subtitle">Agency founder. Growth marketer. AI tinkerer.</p>
+                <a href="#" class="cta-button" onclick="openModal(event)">Contact Me</a>
+            </div>
+        </div>
+        <div class="hero-image" style="background-image: url('https://i.imgur.com/tiVV9q6.jpeg');"></div>
+        <div class="hero-overlay"></div>
+        <div class="star star-1"></div>
+        <div class="star yellow star-3"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+        <div class="rainbow-stripe stripe-1"></div>
+        <div class="squiggle squiggle-1"></div>
+    </section>
+
+    <!-- About Me Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-cards">
+                <div class="about-card">
+                    <span class="emoji">🎾</span>
+                    <h3>Racket Sport Addict</h3>
+                </div>
+                <div class="about-card">
+                    <span class="emoji">👟</span>
+                    <h3>Likely Getting 10k Steps</h3>
+                </div>
+                <div class="about-card">
+                    <span class="emoji">🍞</span>
+                    <h3>Sourdough Baker</h3>
+                </div>
+                <div class="about-card">
+                    <span class="emoji">💳</span>
+                    <h3>Credit Card Point Aficionado</h3>
+                </div>
+                <div class="about-card">
+                    <span class="emoji">📱</span>
+                    <h3>Spontaneous Facetimer</h3>
+                </div>
+                <div class="about-card">
+                    <span class="emoji">🌊</span>
+                    <h3>Coastal Gran Energy</h3>
+                </div>
+            </div>
+        </div>
+        <div class="blob blob-1"></div>
+        <div class="confetti confetti-1"></div>
+        <div class="confetti confetti-3"></div>
+        <div class="rainbow-stripe stripe-2"></div>
+    </section>
+
+    <!-- Currently Section -->
+    <section class="currently" id="currently">
+        <div class="container">
+            <h2>Currently <span class="currently-icon">💭</span></h2>
+            <div class="currently-items">
+                <div class="currently-item">
+                    <span class="emoji">📊</span>
+                    <h3>Consulting with an upcoming FinTech app</h3>
+                </div>
+                <div class="currently-item">
+                    <span class="emoji">🤖</span>
+                    <h3>Automating anything and everything</h3>
+                </div>
+                <div class="currently-item">
+                    <span class="emoji">⚖️</span>
+                    <h3>Marketing law firms</h3>
+                </div>
+            </div>
+        </div>
+        <div class="blob blob-2"></div>
+        <div class="confetti confetti-2"></div>
+        <div class="confetti confetti-4"></div>
+        <div class="squiggle squiggle-2"></div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <h2>Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-date">2018-2024</div>
+                    <div class="experience-title">Blosm Brands (Acquired) - Co-Founder</div>
+                    <ul class="experience-details">
+                        <li>Clients: Palmer's, Inala By La La Anthony, Kwiat, Fred Leighton, LOLA</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-date">2016-2018</div>
+                    <div class="experience-title">January Digital - Paid Media Manager</div>
+                    <ul class="experience-details">
+                        <li>Clients: Fenty Beauty, NARS Cosmetics, Shiseido, Ole Henrikson</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-date">2013-2016</div>
+                    <div class="experience-title">Internships</div>
+                    <ul class="experience-details">
+                        <li>Companies: The Honest Company, Quest Nutrition, Thrive Market, Southwest Airlines</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Features</h3>
+                    <ul class="features-list">
+                        <li><a href="https://digiday.com/media-buying/media-buying-briefing-how-tiktok-agencies-work-and-why-they-dont-fear-a-u-s-ban-of-the-app/" target="_blank">Digiday</a></li>
+                        <li><a href="https://voyagela.com/interview/meet-sanam-ghaneeian-of-blosm-brands/" target="_blank">VoyageLA</a></li>
+                        <li><a href="https://voyagedallas.com/interview/meet-sanam-ghaneeian-lane-harmer-blosm-brands-uptown/" target="_blank">VoyageDallas</a></li>
+                        <li><a href="https://medium.com/authority-magazine/sanam-ghaneeian-of-blosm-brands-on-how-to-grow-beyond-your-comfort-zone-to-grow-both-personally-and-85295a94a4a9" target="_blank">Authority Magazine</a></li>
+                        <li><a href="https://welllivedwoman.com/blogs/news/how-to-hack-business-class" target="_blank">Well Lived Woman</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/sanamghaneeian" target="_blank" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/sghaneeian/" target="_blank" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@sanamghan" target="_blank" aria-label="TikTok">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Sanam Ghaneeian. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>Get In Touch</h3>
+            <form id="contactForm" action="https://formspree.io/f/mwpbwrkz" method="POST">
+                <div class="form-group">
+                    <label for="firstName">First Name *</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name *</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="additionalInfo">Additional Information</label>
+                    <textarea id="additionalInfo" name="additionalInfo" placeholder="Tell me more about your project or how I can help..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal functions
+        function openModal(event) {
+            event.preventDefault();
+            document.getElementById('contactModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Simple animation for the cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const aboutCards = document.querySelectorAll('.about-card');
+            const currentlyItems = document.querySelectorAll('.currently-item');
+            
+            // Animate about cards
+            aboutCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+            
+            // Animate currently items
+            currentlyItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+
+            // Create cursor elements
+            const cursorDot = document.createElement('div');
+            cursorDot.classList.add('cursor-dot');
+            const cursorOutline = document.createElement('div');
+            cursorOutline.classList.add('cursor-outline');
+            document.body.appendChild(cursorDot);
+            document.body.appendChild(cursorOutline);
+
+            // Update cursor position
+            document.addEventListener('mousemove', (e) => {
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+                
+                cursorOutline.style.left = e.clientX + 'px';
+                cursorOutline.style.top = e.clientY + 'px';
+            });
+
+            // Add hover effect for links
+            const links = document.querySelectorAll('a');
+            links.forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    cursorOutline.style.width = '60px';
+                    cursorOutline.style.height = '60px';
+                    cursorOutline.style.borderColor = 'var(--bright-yellow)';
+                });
+                
+                link.addEventListener('mouseleave', () => {
+                    cursorOutline.style.width = '40px';
+                    cursorOutline.style.height = '40px';
+                    cursorOutline.style.borderColor = 'var(--bright-pink)';
+                });
+            });
+
+            // Add hover effect for cards
+            const cards = document.querySelectorAll('.about-card, .currently-item');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    cursorOutline.style.width = '80px';
+                    cursorOutline.style.height = '80px';
+                    cursorOutline.style.borderColor = 'var(--teal)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    cursorOutline.style.width = '40px';
+                    cursorOutline.style.height = '40px';
+                    cursorOutline.style.borderColor = 'var(--bright-pink)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
