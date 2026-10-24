@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bookshelf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500&family=Libre+Caslon+Text:wght@700&family=Inter:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page:#fbf7f0;
+    --ink:#2a2420;
+    --wood-1:#b07a52;
+    --wood-2:#8a5a3a;
+    --wood-3:#6e4329;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--ink);font-family:Inter,system-ui,sans-serif}
+
+  .bookshelf{max-width:1200px;margin:0 auto;padding:56px 16px 72px}
+  .bookshelf h2{
+    font-family:Newsreader,Georgia,serif;font-weight:500;
+    font-size:clamp(36px,6vw,72px);letter-spacing:-0.02em;margin:0 0 40px;line-height:1;
+  }
+
+  .shelf-scroll{overflow-x:auto;overflow-y:visible;padding-top:24px;scrollbar-width:thin}
+  .shelf-inner{width:max-content;min-width:100%}
+  .shelf{display:flex;align-items:flex-end;justify-content:center;gap:3px;padding:0 24px}
+  .board{
+    height:22px;border-radius:2px;margin-top:-1px;
+    background:
+      repeating-linear-gradient(90deg,rgba(0,0,0,.05) 0 1px,transparent 1px 90px),
+      linear-gradient(180deg,var(--wood-1),var(--wood-2) 60%,var(--wood-3));
+    box-shadow:0 14px 22px -10px rgba(60,35,20,.45), inset 0 1px 0 rgba(255,255,255,.25);
+  }
+
+  /* ---------- Standing book ---------- */
+  .book{
+    --w:48px;--h:300px;--bg:#333;--fg:#fff;--band:transparent;--sub:var(--fg);
+    position:relative;width:var(--w);height:var(--h);flex:none;
+    border:0;padding:0;cursor:pointer;background:var(--bg);color:var(--fg);
+    border-radius:3px 3px 1px 1px;
+    box-shadow:
+      inset 3px 0 4px -2px rgba(255,255,255,.25),
+      inset -4px 0 6px -2px rgba(0,0,0,.35),
+      inset 0 0 0 1px rgba(0,0,0,.18),
+      2px 0 3px rgba(0,0,0,.12);
+    transition:transform .25s ease, box-shadow .25s ease;
+    transform-origin:bottom left;
+  }
+  /* rounded-spine sheen + paper/cloth grain */
+  .book::before{
+    content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+    background:
+      linear-gradient(90deg,rgba(0,0,0,.28) 0%,rgba(255,255,255,.14) 14%,rgba(255,255,255,0) 32%,rgba(0,0,0,0) 70%,rgba(0,0,0,.22) 100%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;opacity:.55;
+  }
+  /* bottom band + top headband */
+  .book::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:var(--band-h,0px);
+    background:var(--band);border-radius:0 0 1px 1px;pointer-events:none;
+    box-shadow:0 calc(-1 * var(--h) + var(--band-h,0px) + 3px) 0 0 rgba(255,255,255,.08);
+  }
+  .book:hover,.book:focus-visible{transform:translateY(-12px);outline:none;
+    box-shadow:inset 3px 0 4px -2px rgba(255,255,255,.25),inset -4px 0 6px -2px rgba(0,0,0,.35),inset 0 0 0 1px rgba(0,0,0,.18),0 12px 18px -8px rgba(0,0,0,.35)}
+  .book:focus-visible{box-shadow:0 0 0 3px var(--page),0 0 0 5px var(--ink)}
+
+  .spine{
+    position:absolute;inset:18px 0 calc(var(--band-h,0px) + 18px);
+    display:flex;align-items:center;justify-content:space-between;
+    writing-mode:vertical-rl;transform:rotate(180deg);gap:14px;overflow:hidden;
+  }
+  .title{
+    font-family:"Libre Caslon Text",Georgia,serif;font-weight:700;
+    font-size:var(--ts,17px);line-height:1;white-space:nowrap;letter-spacing:.01em;
+  }
+  .author{
+    font-family:Inter,sans-serif;font-weight:600;font-size:9px;letter-spacing:.14em;
+    text-transform:uppercase;white-space:nowrap;color:var(--sub);opacity:.9;
+  }
+  .foil .title{
+    background:linear-gradient(180deg,#f6e3a4,#c9a24a 45%,#f3dc96 60%,#a9822f);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .rule::marker{display:none}
+  .book.rules .spine::before,.book.rules .spine::after{
+    content:"";width:60%;height:1px;background:currentColor;opacity:.5;writing-mode:horizontal-tb;
+  }
+
+  /* leaning book */
+  .book.lean{transform:rotate(7deg);margin-right:38px}
+  .book.lean:hover,.book.lean:focus-visible{transform:rotate(7deg) translateY(-8px)}
+
+  /* ---------- Lying-flat stack ---------- */
+  .stack{display:flex;flex-direction:column;align-items:flex-start;flex:none;margin-left:6px}
+  .stack .book{width:var(--h);height:var(--w);transform-origin:center}
+  .stack .book::before{
+    background:
+      linear-gradient(180deg,rgba(255,255,255,.14) 0%,rgba(255,255,255,0) 30%,rgba(0,0,0,.22) 100%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .stack .book::after{left:auto;top:0;bottom:0;right:0;width:var(--band-h,0px);height:auto;box-shadow:none}
+  .stack .spine{writing-mode:horizontal-tb;transform:none;inset:0 calc(var(--band-h,0px) + 16px) 0 16px}
+  .stack .book:hover,.stack .book:focus-visible{transform:translateX(8px)}
+  .stack .book:nth-child(1){margin-left:14px}
+
+  /* ---------- Popover card ---------- */
+  .card{
+    position:fixed;z-index:10;width:min(300px,calc(100vw - 32px));
+    background:#fff;border-radius:12px;padding:18px 18px 16px;
+    box-shadow:0 18px 40px -12px rgba(40,25,15,.35),0 0 0 1px rgba(40,25,15,.08);
+    opacity:0;transform:translateY(6px);pointer-events:none;transition:.18s ease;
+  }
+  .card.open{opacity:1;transform:none;pointer-events:auto}
+  .card h3{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:22px;line-height:1.15;margin:0 0 4px}
+  .card .by{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7a6e64;margin:0 0 12px}
+  .card .note{font-size:14px;line-height:1.5;margin:0 0 14px;color:#4a413a}
+  .card a{font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;border-bottom:1px solid currentColor}
+  .card .close{position:absolute;top:8px;right:10px;border:0;background:none;font-size:20px;cursor:pointer;color:#9a8e84;line-height:1}
+
+  @media (max-width:640px){
+    .bookshelf{padding-top:36px}
+    .shelf{zoom:.78}
+  }
+</style>
+</head>
+<body>
+
+<section class="bookshelf">
+  <h2>Currently on my bookshelf.</h2>
+  <div class="shelf-scroll">
+    <div class="shelf-inner">
+      <div class="shelf" id="shelf"></div>
+      <div class="board"></div>
+    </div>
+  </div>
+</section>
+
+<div class="card" id="card" role="dialog" aria-modal="false" aria-labelledby="card-title">
+  <button class="close" aria-label="Close">&times;</button>
+  <h3 id="card-title"></h3>
+  <p class="by"></p>
+  <p class="note"></p>
+  <a target="_blank" rel="noopener">Find it on Bookshop.org &rarr;</a>
+</div>
+
+<script>
+/*
+  Edit your books here.
+  w = spine thickness (px), h = height (px), note = optional line shown when clicked.
+  layout: "stand" (default), "lean", or "flat" (flat books are grouped into a stack at the end).
+*/
+const books = [
+  { title:"The Five-Star Weekend", author:"Elin Hilderbrand", bg:"#a8d6ef", fg:"#1f3f8a", band:"#e8c24a", bandH:20, w:62, h:300, note:"" },
+  { title:"The Pivot Year", author:"Brianna Wiest", bg:"#1b1a19", fg:"#f4efe6", w:52, h:300, rules:true, note:"" },
+  { title:"The Book of Alchemy", author:"Suleika Jaouad", bg:"#7f3446", fg:"#f4e4d8", w:66, h:330, foil:true, note:"" },
+  { title:"Big Magic", author:"Elizabeth Gilbert", bg:"linear-gradient(180deg,#e2a9c2,#9cc8e0 40%,#a9c08a 70%,#e2a640)", fg:"#fff", w:58, h:318, ts:"20px", note:"" },
+  { title:"The Life That\u2019s Waiting", author:"Brianna Wiest", bg:"#f3eedf", fg:"#a99a72", sub:"#a99a72", w:56, h:330, note:"" },
+  { title:"Deep Work", author:"Cal Newport", bg:"linear-gradient(90deg,#1b1a19 0 9px,#e9c03f 9px calc(100% - 9px),#1b1a19 calc(100% - 9px))", fg:"#1b1a19", w:64, h:286, ts:"19px", note:"" },
+  { title:"The Way of Integrity", author:"Martha Beck", bg:"linear-gradient(90deg,#f6efc9,#ead27a 50%,#f6efc9)", fg:"#5e5236", w:60, h:330, note:"" },
+  { title:"Ali\u2019s Well That Ends Well", author:"Ali Wentworth", bg:"#7fd0ec", fg:"#1f3f8a", band:"#d9574a", bandH:22, w:56, h:318, note:"" },
+  { title:"Ali in Wonderland", author:"Ali Wentworth", bg:"#f9f0a4", fg:"#1f3f8a", band:"#8fc5e2", bandH:22, w:52, h:300, note:"" },
+  { title:"The Artist\u2019s Way", author:"Julia Cameron", bg:"#8f6a32", fg:"#f2dfb0", w:58, h:286, foil:true, note:"" },
+  { title:"Into the Wild", author:"Jon Krakauer", bg:"#6f7f74", fg:"#f2efe6", band:"#2c2c2c", bandH:20, w:50, h:300, note:"" },
+  { title:"The Lion Women of Tehran", author:"Marjan Kamali", bg:"#1f5c5a", fg:"#f2efe6", band:"#c9a24a", bandH:18, w:60, h:324, foil:true, note:"" },
+  { title:"Strangers", author:"Belle Burden", bg:"#ece5d8", fg:"#8b2b2b", sub:"#6b5d50", w:54, h:306, ts:"20px", rules:true, note:"" },
+  { title:"The Correspondent", author:"Virginia Evans", bg:"#3d5a80", fg:"#f6f0e4", band:"#e7dcc4", bandH:16, w:58, h:312, note:"" },
+  { title:"Silence", author:"Erling Kagge", bg:"#1b1b45", fg:"#f2efe6", w:44, h:300, ts:"20px", foil:true, layout:"lean", note:"" },
+  { title:"Steal Like an Artist", author:"Austin Kleon", bg:"#1b1a19", fg:"#fff", band:"#cf4a3e", bandH:16, w:38, h:240, ts:"15px", layout:"flat", note:"" },
+  { title:"Show Your Work!", author:"Austin Kleon", bg:"linear-gradient(180deg,#1b1a19 0 6px,#f3d24c 6px calc(100% - 6px),#1b1a19 calc(100% - 6px))", fg:"#1b1a19", w:40, h:250, ts:"15px", layout:"flat", note:"" },
+];
+
+const shelf = document.getElementById('shelf');
+const stack = document.createElement('div'); stack.className = 'stack';
+
+function makeBook(b){
+  const el = document.createElement('button');
+  el.className = 'book' + (b.foil?' foil':'') + (b.rules?' rules':'') + (b.layout==='lean'?' lean':'');
+  el.style.cssText = `--w:${b.w}px;--h:${b.h}px;--bg:${b.bg};--fg:${b.fg};--sub:${b.sub||b.fg};` +
+    (b.band?`--band:${b.band};--band-h:${b.bandH}px;`:'') + (b.ts?`--ts:${b.ts};`:'');
+  el.setAttribute('aria-label', `${b.title} by ${b.author}`);
+  el.innerHTML = `<span class="spine"><span class="title"></span><span class="author"></span></span>`;
+  el.querySelector('.title').textContent = b.title;
+  el.querySelector('.author').textContent = b.author;
+  el.addEventListener('click', e => { e.stopPropagation(); openCard(b, el); });
+  return el;
+}
+
+books.forEach(b => (b.layout==='flat' ? stack : shelf).appendChild(makeBook(b)));
+if (stack.children.length) shelf.appendChild(stack);
+
+/* shrink text until title + author fit on each spine */
+function fitSpines(){
+  document.querySelectorAll('.book').forEach(book => {
+    const spine = book.querySelector('.spine'), t = spine.querySelector('.title'), a = spine.querySelector('.author');
+    const flat = !!book.closest('.stack');
+    const len = el => { const r = el.getBoundingClientRect(); return flat ? r.width : r.height; };
+    t.style.fontSize = ''; a.style.fontSize = ''; spine.style.gap = '';
+    let ts = parseFloat(getComputedStyle(t).fontSize), as = 9, gap = 14;
+    const avail = () => len(spine);
+    const need = () => len(t) + len(a) + gap;
+    while (need() > avail() && ts > 11){ ts -= .5; t.style.fontSize = ts + 'px'; }
+    while (need() > avail() && gap > 6){ gap -= 2; spine.style.gap = gap + 'px'; }
+    while (need() > avail() && as > 7){ as -= .5; a.style.fontSize = as + 'px'; a.style.letterSpacing = '.08em'; }
+  });
+}
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(fitSpines);
+
+/* popover */
+const card = document.getElementById('card');
+function openCard(b, el){
+  card.querySelector('h3').textContent = b.title;
+  card.querySelector('.by').textContent = b.author;
+  const note = card.querySelector('.note');
+  note.textContent = b.note || ''; note.style.display = b.note ? '' : 'none';
+  card.querySelector('a').href = 'https://bookshop.org/search?keywords=' + encodeURIComponent(b.title + ' ' + b.author);
+  const r = el.getBoundingClientRect(), cw = Math.min(300, innerWidth - 32);
+  let left = Math.min(Math.max(16, r.left + r.width/2 - cw/2), innerWidth - cw - 16);
+  let top = r.top - 16 - 170; if (top < 16) top = r.bottom + 12;
+  card.style.left = left + 'px'; card.style.top = top + 'px';
+  card.classList.add('open');
+}
+function closeCard(){ card.classList.remove('open'); }
+card.querySelector('.close').addEventListener('click', closeCard);
+card.addEventListener('click', e => e.stopPropagation());
+document.addEventListener('click', closeCard);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCard(); });
+addEventListener('scroll', closeCard, true);
+</script>
+</body>
+</html>
