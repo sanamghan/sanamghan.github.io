@@ -49,6 +49,9 @@ stableStyles.textContent = `
   .portrait:before { content: none; }
   .portrait { padding: 0; align-items: stretch; }
   .portrait img { display: block; width: 100%; height: 100%; min-height: 380px; object-fit: cover; object-position: center; }
+  .ai-site-nav { display: flex; align-items: center; gap: clamp(14px, 2vw, 28px); }
+  .ai-site-nav a { font: 10px var(--m); letter-spacing: .07em; text-decoration: none; }
+  .ai-site-nav a:hover { color: var(--r); }
   .ai-mobile-menu-trigger, .ai-mobile-menu { display: none; }
   @property --ring-sweep { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
   .gauges .ring { --ring-sweep: 0deg; background: conic-gradient(var(--arc) 0deg var(--ring-sweep), #ffffff28 var(--ring-sweep) 360deg); animation: ring-fill 4.8s cubic-bezier(.55, 0, .25, 1) infinite alternate; }
@@ -56,7 +59,8 @@ stableStyles.textContent = `
   @keyframes ring-fill { from { --ring-sweep: 0deg; } to { --ring-sweep: 235deg; } }
   @media (prefers-reduced-motion: reduce) { .gauges .ring { --ring-sweep: 235deg; animation: none; } }
   @media (max-width: 580px) {
-    header { position: relative; }
+    header { position: relative; justify-content: space-between; }
+    .ai-site-nav { display: none; }
     .ai-mobile-menu-trigger { display: inline-flex; align-items: center; gap: 6px; border: 0; background: transparent; color: var(--i); font: 10px var(--m); letter-spacing: .07em; cursor: pointer; }
     .ai-mobile-menu-trigger span { font-size: 16px; line-height: 0; }
     .ai-mobile-menu { position: absolute; z-index: 10; top: calc(100% + 1px); right: 14px; display: none; min-width: 190px; padding: 8px 16px; background: var(--v); border: 1px solid var(--i); box-shadow: 5px 5px var(--i); text-align: left; }
@@ -103,6 +107,15 @@ stableStyles.textContent = `
     footer { justify-content: center; }
   }
   @media (min-width: 851px) {
+    .hero.wrap { padding-top: clamp(46px, 5vw, 70px); padding-bottom: clamp(58px, 6vw, 82px); }
+    .cards { max-width: 520px; gap: 18px; }
+    .card { min-height: 205px; padding: 24px; }
+    .card b { font-size: 30px; }
+    .sys { min-height: 154px; }
+    .intro.wrap, .method.wrap, .workflows.wrap { padding-top: clamp(62px, 5.5vw, 76px); padding-bottom: clamp(62px, 5.5vw, 76px); }
+    .intro { gap: 50px; }
+    .stages { margin-top: 28px; }
+    .workflows { gap: 54px; }
     .calc { grid-template-columns: 1fr 1fr; gap: 34px; background: var(--p); color: var(--i); }
     .calc .calc-intro { grid-column: 1 / -1; max-width: none; margin: 0; }
     .calc .calc-intro h2 { white-space: nowrap; color: var(--i); font-size: clamp(39px, 4.9vw, 68px); margin-bottom: 12px; }
