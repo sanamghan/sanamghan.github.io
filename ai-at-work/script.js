@@ -107,6 +107,31 @@ stableStyles.textContent = `
     .form, .form label, .form input, .form textarea { text-align: center; }
     footer { justify-content: center; }
   }
+  @media (min-width: 581px) and (max-width: 850px) {
+    .hero, .intro, .method, .workflows, .calc, .proof, .sanam, .ways, .cta, footer { text-align: center; }
+    .hero > div, .intro-copy, .method > div, .workflows > div, .calc-intro, .calc-controls, .results, .proof > div, .sanam > div, .ways article { justify-self: center; }
+    .hero .lead, .hero .sub, .intro p, .method > div > p, .workflows > div > p, .calc-intro > p, .cta > p { margin-left: auto; margin-right: auto; }
+    .hero.wrap { padding-top: 56px; padding-bottom: 54px; }
+    .cards { max-width: min(500px, 100%); justify-self: center; }
+    .intro.wrap, .method.wrap, .workflows.wrap, .calc.wrap, .proof.wrap, .sanam.wrap, .ways.wrap, .cta.wrap { padding-top: 52px; padding-bottom: 48px; }
+    .intro, .sanam { gap: 36px; }
+    .workflows { gap: 32px; }
+    .stages, .proof-grid, .ways-grid, .cred { text-align: center; }
+    .stage, .proof-card, .ways article, .result { text-align: center; }
+    .workflow { grid-template-columns: 1fr 1fr 1fr; text-align: center; }
+    .workflow span { text-align: left; }
+    .workflow i { text-align: right; }
+    .panel.open, .panel.open p { text-align: center; }
+    .calc { gap: 28px; background: var(--p); color: var(--i); }
+    .calc h2, .calc output, .calc .result strong, .calc .disc { color: var(--i); }
+    .calc input { accent-color: var(--r); }
+    .calc .result { border-color: var(--i); }
+    .calc .calc-controls, .calc .results { width: min(640px, 100%); margin-left: auto; margin-right: auto; }
+    .control label { justify-content: center; gap: 10px; }
+    .form, .form label, .form input, .form textarea { text-align: center; }
+    .cta .form .button { grid-column: 1 / -1; justify-self: center; }
+    footer { justify-content: center; }
+  }
   @media (min-width: 851px) {
     .hero.wrap { padding-top: clamp(46px, 5vw, 70px); padding-bottom: clamp(58px, 6vw, 82px); }
     .cards { max-width: 520px; gap: 18px; }
