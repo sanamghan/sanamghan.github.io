@@ -61,7 +61,7 @@ stableStyles.textContent = `
   @media (max-width: 580px) {
     header { position: relative; justify-content: space-between; }
     .ai-site-nav { display: none; }
-    .ai-mobile-menu-trigger { display: inline-flex; align-items: center; gap: 6px; border: 0; background: transparent; color: var(--i); font: 10px var(--m); letter-spacing: .07em; cursor: pointer; }
+    .ai-mobile-menu-trigger { position: absolute; right: 16px; top: 50%; display: inline-flex; align-items: center; gap: 6px; border: 0; background: transparent; color: var(--i); font: 10px var(--m); letter-spacing: .07em; cursor: pointer; transform: translateY(-50%); }
     .ai-mobile-menu-trigger span { font-size: 16px; line-height: 0; }
     .ai-mobile-menu { position: absolute; z-index: 10; top: calc(100% + 1px); right: 14px; display: none; min-width: 190px; padding: 8px 16px; background: var(--v); border: 1px solid var(--i); box-shadow: 5px 5px var(--i); text-align: left; }
     .ai-mobile-menu.is-open { display: block; }
@@ -133,6 +133,7 @@ document.head.append(stableStyles);
 const resourcesLink = document.querySelector('.ways article:last-child a');
 if (resourcesLink) resourcesLink.href = '/resources/';
 const pageHeader = document.querySelector('header');
+const headerContent = pageHeader?.querySelector('.ai-nav-wrap') || pageHeader;
 if (pageHeader && !pageHeader.querySelector('.ai-mobile-menu-trigger')) {
   const trigger = document.createElement('button');
   trigger.className = 'ai-mobile-menu-trigger';
@@ -143,7 +144,8 @@ if (pageHeader && !pageHeader.querySelector('.ai-mobile-menu-trigger')) {
   menu.className = 'ai-mobile-menu';
   menu.setAttribute('aria-label', 'Mobile navigation');
   menu.innerHTML = '<a href="/ai-at-work/">AI at Work</a><a href="/resources/">Resources</a><a href="#inquire">Contact</a>';
-  pageHeader.append(trigger, menu);
+  headerContent.append(trigger);
+  pageHeader.append(menu);
   trigger.addEventListener('click', () => {
     const isOpen = menu.classList.toggle('is-open');
     trigger.setAttribute('aria-expanded', String(isOpen));
