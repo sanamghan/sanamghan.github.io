@@ -41,6 +41,7 @@ updateCalculator();
 
 document.querySelector('.intro h2').innerHTML = 'Bring your work <span class="mark">into the room.</span>';
 document.querySelector('.method h2').innerHTML = 'Make something <em>your team can use.</em>';
+document.querySelector('.proof h2').innerHTML = 'Practical systems. <em>Real proof.</em>';
 const palmer = document.querySelectorAll('.proof-card')[2];
 palmer.innerHTML = "<small>PALMER'S</small><h3>Product briefs, made faster.</h3><p>AI-supported product-brief workflows after director-level training.</p>";
 
@@ -112,10 +113,12 @@ stableStyles.textContent = `
     .card { min-height: 205px; padding: 24px; }
     .card b { font-size: 30px; }
     .sys { min-height: 154px; }
-    .intro.wrap, .method.wrap, .workflows.wrap { padding-top: clamp(62px, 5.5vw, 76px); padding-bottom: clamp(62px, 5.5vw, 76px); }
+    .intro.wrap, .method.wrap, .workflows.wrap, .calc.wrap, .proof.wrap, .sanam.wrap, .ways.wrap, .cta.wrap { padding-top: clamp(52px, 4vw, 60px); padding-bottom: clamp(52px, 4vw, 60px); }
     .intro { gap: 50px; }
     .stages { margin-top: 28px; }
     .workflows { gap: 54px; }
+    .proof h2 { white-space: nowrap; }
+    .cta .form .button { grid-column: 1 / -1; justify-self: center; }
     .calc { grid-template-columns: 1fr 1fr; gap: 34px; background: var(--p); color: var(--i); }
     .calc .calc-intro { grid-column: 1 / -1; max-width: none; margin: 0; }
     .calc .calc-intro h2 { white-space: nowrap; color: var(--i); font-size: clamp(39px, 4.9vw, 68px); margin-bottom: 12px; }
