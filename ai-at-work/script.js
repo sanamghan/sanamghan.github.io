@@ -43,7 +43,7 @@ document.querySelector('.intro h2').innerHTML = 'Bring your work <span class="ma
 document.querySelector('.method h2').innerHTML = 'Make something <em>your team can use.</em>';
 document.querySelector('.proof h2').innerHTML = 'Practical systems. <em>Real proof.</em>';
 const palmer = document.querySelectorAll('.proof-card')[2];
-palmer.innerHTML = "<small>PALMER'S</small><h3>Product briefs, made faster.</h3><p>AI-supported product-brief workflows after director-level training.</p>";
+palmer.innerHTML = "<small>PALMER'S</small><h3>Product briefs, made faster.</h3><p><b>Problem:</b> Product brief development took roughly two hours.</p><p><b>What changed:</b> Director-level training and an AI-supported product-brief workflow.</p><p><b>Observed outcome:</b> A repeatable process that reduced brief development to about 15 minutes.</p>";
 
 const stableStyles = document.createElement('style');
 stableStyles.textContent = `

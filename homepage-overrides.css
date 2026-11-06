@@ -1,5 +1,6 @@
 /* Approved homepage navigation and contact-path updates. */
 .mobile-menu-trigger,.homepage-mobile-menu{display:none}
+.link-arrow{display:inline-block;position:relative;width:.78em;height:.78em;margin-left:.32em;vertical-align:.03em}.link-arrow::before{position:absolute;top:.61em;left:.08em;width:.72em;height:1.5px;background:currentColor;content:"";transform:rotate(-45deg);transform-origin:left center}.link-arrow::after{position:absolute;top:.02em;right:.01em;width:.34em;height:.34em;border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;content:""}
 @media (max-width:720px){
   .nav-wrap{position:relative}
   .mobile-menu-trigger{display:inline-flex;align-items:center;gap:7px;margin-left:auto;padding:8px 0;border:0;background:transparent;color:var(--ink);font:800 .66rem/1 Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}

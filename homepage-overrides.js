@@ -40,9 +40,9 @@ function applyApprovedHomepageChanges() {
       link.href = aiWorkUrl;
       link.removeAttribute('target');
       link.removeAttribute('rel');
-      link.innerHTML = 'Explore AI at Work <span aria-hidden="true">↗</span>';
+      link.innerHTML = 'Explore AI at Work <span class="link-arrow" aria-hidden="true"></span>';
     }
-    if (label.includes('Work with me directly')) link.innerHTML = 'Work with Sanam <span aria-hidden="true">↗</span>';
+    if (label.includes('Work with me directly')) link.innerHTML = 'Work with Sanam <span class="link-arrow" aria-hidden="true"></span>';
     if (label.includes('Speaking and workshop inquiry')) link.remove();
     if (label.includes('Partner with Girl Meets Code')) link.remove();
   });
