@@ -28,6 +28,18 @@ function addMobileMenu() {
   }));
 }
 
+function addYouTubeLink() {
+  const socialLinks = document.querySelector('.social-links');
+  if (!socialLinks || socialLinks.querySelector('[aria-label="YouTube"]')) return;
+  const link = document.createElement('a');
+  link.href = 'https://www.youtube.com/@Systems-with-Sanam';
+  link.target = '_blank';
+  link.rel = 'noreferrer';
+  link.setAttribute('aria-label', 'YouTube');
+  link.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="3"></rect><path d="M10 9.25 15 12l-5 2.75Z"></path></svg>';
+  socialLinks.append(link);
+}
+
 function applyApprovedHomepageChanges() {
   const nav = document.querySelector('.nav-links');
   const buttonRow = document.querySelector('.button-row');
@@ -47,6 +59,7 @@ function applyApprovedHomepageChanges() {
     if (label.includes('Partner with Girl Meets Code')) link.remove();
   });
   addMobileMenu();
+  addYouTubeLink();
   return true;
 }
 
