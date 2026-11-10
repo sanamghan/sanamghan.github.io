@@ -30,7 +30,10 @@ function addMobileMenu() {
 
 function addYouTubeLink() {
   const socialLinks = document.querySelector('.social-links');
-  if (!socialLinks || socialLinks.querySelector('[aria-label="YouTube"]')) return;
+  if (!socialLinks) return;
+  const instagram = socialLinks.querySelector('[aria-label="Instagram"]');
+  if (instagram) instagram.href = 'https://www.instagram.com/systemswithsanam';
+  if (socialLinks.querySelector('[aria-label="YouTube"]')) return;
   const link = document.createElement('a');
   link.href = 'https://www.youtube.com/@Systems-with-Sanam';
   link.target = '_blank';
