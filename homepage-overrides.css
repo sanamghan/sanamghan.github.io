@@ -132,3 +132,13 @@
     font-size: clamp(2.15rem, 3vw, 3rem);
   }
 }
+
+
+/* Equal card silhouettes keep the staggered desktop timeline crisp. */
+@media (min-width: 1050px) {
+  .timeline-list.timeline-three-card .timeline-current,
+  .timeline-list.timeline-three-card article:not(.timeline-current) {
+    height: 460px;
+    min-height: 460px;
+  }
+}
