@@ -165,3 +165,11 @@
     letter-spacing: inherit;
   }
 }
+
+
+@media (min-width: 1050px) {
+  .timeline-list.timeline-three-card .timeline-current > p::after {
+    font-size: .78rem;
+    font-weight: 700;
+  }
+}
