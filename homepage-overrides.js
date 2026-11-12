@@ -43,6 +43,29 @@ function addYouTubeLink() {
   socialLinks.append(link);
 }
 
+function reshapeTimeline() {
+  const timeline = document.querySelector('.timeline-list');
+  if (!timeline || timeline.classList.contains('timeline-three-card')) return;
+  const entries = Array.from(timeline.querySelectorAll('.timeline-entry'));
+  const formerBrand = entries.find((entry) => entry.querySelector('h3')?.textContent.trim() === 'Girl Meets Code');
+  if (formerBrand) formerBrand.remove();
+
+  const current = Array.from(timeline.querySelectorAll('.timeline-entry')).find(
+    (entry) => entry.querySelector('h3')?.textContent.trim() === 'Hello Sanam'
+  );
+  if (!current) return;
+  current.classList.add('timeline-current');
+  const period = current.querySelector(':scope > p');
+  const role = current.querySelector('.timeline-role');
+  const detail = current.querySelector('small');
+  const tags = current.querySelector('.timeline-tags');
+  if (period) period.textContent = 'Current';
+  if (role) role.textContent = 'Consultant + AI educator';
+  if (detail) detail.textContent = 'AI workshops, education, systems, growth strategy, speaking, and implementation.';
+  if (tags) tags.innerHTML = '<span>Teach</span><span>Systems</span><span>Grow</span>';
+  timeline.classList.add('timeline-three-card');
+}
+
 function applyApprovedHomepageChanges() {
   const nav = document.querySelector('.nav-links');
   const buttonRow = document.querySelector('.button-row');
@@ -63,6 +86,7 @@ function applyApprovedHomepageChanges() {
   });
   addMobileMenu();
   addYouTubeLink();
+  reshapeTimeline();
   return true;
 }
 
