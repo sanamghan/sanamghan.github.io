@@ -16,7 +16,7 @@
     --wood-3:#6e4329;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--page);color:var(--ink);font-family:Inter,system-ui,sans-serif}
+  html,body{height:100%;overflow-y:hidden}\n  body{margin:0;background:var(--page);color:var(--ink);font-family:Inter,system-ui,sans-serif}
 
   .bookshelf{max-width:1200px;margin:0 auto;padding:56px 16px 72px}
   .bookshelf h2{
@@ -24,7 +24,7 @@
     font-size:clamp(36px,6vw,72px);letter-spacing:-0.02em;margin:0 0 40px;line-height:1;
   }
 
-  .shelf-scroll{overflow-x:auto;overflow-y:visible;padding-top:24px;scrollbar-width:thin}
+  .shelf-scroll{overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;overscroll-behavior-y:none;touch-action:pan-x;padding-top:24px;scrollbar-width:thin}
   .shelf-inner{width:max-content;min-width:100%}
   .shelf{display:flex;align-items:flex-end;justify-content:center;gap:3px;padding:0 24px}
   .board{
