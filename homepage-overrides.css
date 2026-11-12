@@ -50,3 +50,28 @@
   .timeline-list.timeline-three-card article:nth-child(2) { grid-row: 1; transform: rotate(1.1deg); }
   .timeline-list.timeline-three-card article:nth-child(3) { grid-row: 2; transform: rotate(-.6deg); }
 }
+
+
+/* Keep the three career cards balanced on desktop. */
+@media (min-width: 781px) {
+  .timeline-list.timeline-three-card {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: minmax(300px, auto);
+    gap: 28px;
+  }
+  .timeline-list.timeline-three-card .timeline-current,
+  .timeline-list.timeline-three-card article:not(.timeline-current) {
+    grid-column: auto;
+    grid-row: auto;
+    min-height: 340px;
+    padding: 28px 30px;
+    transform: none;
+  }
+  .timeline-list.timeline-three-card .timeline-current h3 {
+    font-size: clamp(2.15rem, 3.2vw, 3.15rem);
+  }
+}
+.bookshelf-frame { height: 660px; overflow: hidden; }
+@media (max-width: 720px) {
+  .bookshelf-frame { height: 525px; }
+}
