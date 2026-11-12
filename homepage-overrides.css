@@ -142,3 +142,26 @@
     min-height: 460px;
   }
 }
+
+
+/* Wide desktop: use the available canvas while preserving tablet and mobile. */
+@media (min-width: 1600px) {
+  .content,
+  .nav-wrap {
+    width: min(calc(100% - 160px), 1800px);
+    max-width: none;
+  }
+}
+
+/* Desktop timeline: give the current chapter the same date marker as earlier chapters. */
+@media (min-width: 1050px) {
+  .timeline-list.timeline-three-card .timeline-current > p {
+    font-size: 0;
+  }
+
+  .timeline-list.timeline-three-card .timeline-current > p::after {
+    content: "2024 TO NOW";
+    font-size: inherit;
+    letter-spacing: inherit;
+  }
+}
