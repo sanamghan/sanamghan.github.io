@@ -173,3 +173,27 @@
     font-weight: 700;
   }
 }
+
+
+/* Desktop timeline: one current marker, aligned with the dated cards. */
+@media (min-width: 1050px) {
+  .timeline-list.timeline-three-card .timeline-current {
+    display: block;
+    justify-content: initial;
+  }
+
+  .timeline-list.timeline-three-card .timeline-current > p {
+    display: inline-block;
+    color: var(--raspberry);
+    border-color: var(--raspberry);
+  }
+
+  .timeline-list.timeline-three-card .timeline-current > p::after {
+    content: "2024+";
+  }
+
+  .timeline-list.timeline-three-card article:nth-child(3) > p {
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+}
