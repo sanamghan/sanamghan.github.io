@@ -75,3 +75,60 @@
 @media (max-width: 720px) {
   .bookshelf-frame { height: 525px; }
 }
+
+
+/* Desktop career timeline: equal landscape cards connected on a staggered line. */
+@media (min-width: 1050px) {
+  .timeline-list.timeline-three-card {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: 1fr;
+    gap: 38px;
+    align-items: center;
+    position: relative;
+    padding-top: 54px;
+    padding-bottom: 54px;
+  }
+
+  .timeline-list.timeline-three-card::before {
+    display: block;
+    top: 50%;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    width: auto;
+    height: 4px;
+    transform: translateY(-50%);
+    background: var(--raspberry);
+  }
+
+  .timeline-list.timeline-three-card .timeline-current,
+  .timeline-list.timeline-three-card article:not(.timeline-current) {
+    grid-column: auto;
+    grid-row: auto;
+    min-height: 260px;
+    margin: 0;
+    padding: 26px 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .timeline-list.timeline-three-card .timeline-current {
+    transform: translateY(-36px) rotate(-1deg);
+  }
+
+  .timeline-list.timeline-three-card article:nth-child(2) {
+    transform: translateY(36px) rotate(1deg);
+  }
+
+  .timeline-list.timeline-three-card article:nth-child(3) {
+    transform: translateY(-36px) rotate(-.6deg);
+  }
+
+  .timeline-list.timeline-three-card article::before {
+    display: none;
+  }
+
+  .timeline-list.timeline-three-card .timeline-current h3 {
+    font-size: clamp(2.15rem, 3vw, 3rem);
+  }
+}
