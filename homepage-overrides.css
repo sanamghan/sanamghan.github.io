@@ -293,3 +293,29 @@
     white-space: nowrap;
   }
 }
+
+
+/* Mid-size desktop: preserve readable cards in a balanced two-plus-one arrangement. */
+@media (min-width: 1050px) and (max-width: 1700px) {
+  .timeline-list.timeline-three-card {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 1020px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .timeline-list.timeline-three-card::before {
+    display: none;
+  }
+
+  .timeline-list.timeline-three-card article:nth-child(1) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 12px);
+  }
+
+  .timeline-list.timeline-three-card article:nth-child(2),
+  .timeline-list.timeline-three-card article:nth-child(3) {
+    width: auto;
+  }
+}
