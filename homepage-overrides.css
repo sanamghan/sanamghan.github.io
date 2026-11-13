@@ -319,3 +319,49 @@
     width: auto;
   }
 }
+
+
+/* Mid-size desktop: retain one horizontal row with precisely equal cards. */
+@media (min-width: 1050px) and (max-width: 1700px) {
+  .timeline-list.timeline-three-card {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: none;
+    gap: 24px;
+  }
+
+  .timeline-list.timeline-three-card::before {
+    display: block;
+  }
+
+  .timeline-list.timeline-three-card .timeline-current,
+  .timeline-list.timeline-three-card article:not(.timeline-current) {
+    box-sizing: border-box;
+    width: auto;
+    height: 440px;
+    min-height: 440px;
+    max-height: 440px;
+    align-self: stretch;
+    justify-self: stretch;
+  }
+
+  .timeline-list.timeline-three-card article:nth-child(1) {
+    order: 3;
+    grid-column: auto;
+    width: auto;
+    transform: rotate(-.5deg);
+  }
+
+  .timeline-list.timeline-three-card article:nth-child(2) {
+    order: 2;
+    grid-column: auto;
+    width: auto;
+    transform: rotate(.45deg);
+  }
+
+  .timeline-list.timeline-three-card article:nth-child(3) {
+    order: 1;
+    grid-column: auto;
+    width: auto;
+    transform: rotate(-.75deg);
+  }
+}
