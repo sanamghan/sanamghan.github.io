@@ -375,3 +375,11 @@
     margin-bottom: 0;
   }
 }
+
+
+/* Compact desktop: clear the source card's stagger margin so all three share one baseline. */
+@media (min-width: 1050px) and (max-width: 1700px) {
+  .timeline-list.timeline-three-card article:nth-child(2) {
+    margin-top: 0 !important;
+  }
+}
