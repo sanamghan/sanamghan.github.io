@@ -245,3 +245,11 @@
     border-color: var(--olive);
   }
 }
+
+
+/* Keep the deck's equal card proportions with a subtle editorial tilt on desktop. */
+@media (min-width: 1050px) {
+  .timeline-list.timeline-three-card article:nth-child(1) { transform: rotate(-.5deg); }
+  .timeline-list.timeline-three-card article:nth-child(2) { transform: rotate(.45deg); }
+  .timeline-list.timeline-three-card article:nth-child(3) { transform: rotate(-.75deg); }
+}
