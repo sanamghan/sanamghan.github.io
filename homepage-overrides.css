@@ -256,7 +256,7 @@
 
 
 /* Compact desktop keeps the presentation cards balanced before tablet takes over. */
-@media (min-width: 1050px) and (max-width: 1450px) {
+@media (min-width: 1050px) and (max-width: 1700px) {
   .timeline-list.timeline-three-card {
     gap: 24px;
   }
