@@ -365,3 +365,13 @@
     transform: rotate(-.75deg);
   }
 }
+
+
+/* Compact desktop: maintain one shared baseline across the equal card row. */
+@media (min-width: 1050px) and (max-width: 1700px) {
+  .timeline-list.timeline-three-card .timeline-current,
+  .timeline-list.timeline-three-card article:not(.timeline-current) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
