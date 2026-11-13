@@ -197,3 +197,51 @@
     border-color: var(--ink);
   }
 }
+
+
+/* Desktop career timeline follows the presentation's even, chronological card row. */
+@media (min-width: 1050px) {
+  .timeline-list.timeline-three-card {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: 1fr;
+    gap: 38px;
+    align-items: stretch;
+    padding-top: 38px;
+    padding-bottom: 38px;
+  }
+
+  .timeline-list.timeline-three-card::before {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .timeline-list.timeline-three-card .timeline-current,
+  .timeline-list.timeline-three-card article:not(.timeline-current) {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    min-height: 500px;
+    margin: 0;
+    padding: 34px 36px;
+    transform: none;
+  }
+
+  .timeline-list.timeline-three-card article > div {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+
+  .timeline-list.timeline-three-card .timeline-tags {
+    margin-top: auto;
+  }
+
+  .timeline-list.timeline-three-card article:nth-child(1) { order: 3; }
+  .timeline-list.timeline-three-card article:nth-child(2) { order: 2; }
+  .timeline-list.timeline-three-card article:nth-child(3) { order: 1; }
+
+  .timeline-list.timeline-three-card .timeline-current > p {
+    color: var(--olive);
+    border-color: var(--olive);
+  }
+}
