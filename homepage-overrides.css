@@ -389,8 +389,8 @@
 @media (min-width: 1050px) {
   .timeline-list.timeline-three-card .timeline-current > p,
   .timeline-list.timeline-three-card .timeline-current > p::after {
-    color: var(--olive) !important;
-    border-color: var(--olive) !important;
+    color: var(--lime) !important;
+    border-color: var(--lime) !important;
   }
 }
 
