@@ -383,3 +383,32 @@
     margin-top: 0 !important;
   }
 }
+
+
+/* Desktop timeline: make the current chapter marker olive and restore a more editorial text scale. */
+@media (min-width: 1050px) {
+  .timeline-list.timeline-three-card .timeline-current > p,
+  .timeline-list.timeline-three-card .timeline-current > p::after {
+    color: var(--olive) !important;
+    border-color: var(--olive) !important;
+  }
+}
+
+@media (min-width: 1701px) {
+  .timeline-list.timeline-three-card h3 {
+    font-size: clamp(2.55rem, 2.6vw, 3.25rem);
+  }
+
+  .timeline-list.timeline-three-card .timeline-role {
+    font-size: .72rem;
+  }
+
+  .timeline-list.timeline-three-card small {
+    font-size: 1.02rem;
+    line-height: 1.4;
+  }
+
+  .timeline-list.timeline-three-card .timeline-tags span {
+    font-size: .64rem;
+  }
+}
